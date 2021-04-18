@@ -6,7 +6,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import  org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import common.Utilities;
 import constant.Constant;
@@ -14,11 +14,12 @@ import org.testng.annotations.Test;
 
 public class LoginTest {
     JavascriptExecutor js;
+
     @BeforeMethod
-    public void beforeMethod(){
+    public void beforeMethod() {
 
         System.out.println("Pre-condition");
-        System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath()+ "\\src\\main\\executables\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath() + "\\src\\main\\executables\\chromedriver.exe");
         Constant.WEBDRIVER = new ChromeDriver();
         Constant.WEBDRIVER.manage().window().maximize();
         js = (JavascriptExecutor) Constant.WEBDRIVER;
@@ -27,7 +28,7 @@ public class LoginTest {
     @AfterMethod
     public void afterMethod() {
         System.out.println("Post-condition");
-     Constant.WEBDRIVER.quit();
+        Constant.WEBDRIVER.quit();
     }
 
     @Test
@@ -43,9 +44,25 @@ public class LoginTest {
 
         js.executeScript("window.scrollBy(0,250)", "");
 
-       String actualMsg = loginPage.login(Constant.USERNAME, Constant.PASSWORD).getWelcomeMessage();
-       String expectedMsg = "Welcome " + Constant.USERNAME;
+        String actualMsg = loginPage.login(Constant.username, Constant.password).getWelcomeMessage();
+        String expectedMsg = "Welcome " + Constant.username;
 
-       Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
+        Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
+    }
+
+    @Test
+    public void TC02() {
+        System.out.println("TC02 - User can not log into Railway with invalid username and password");
+
+        HomePage homePage = new HomePage();
+        homePage.open();
+
+        LoginPage loginPage = homePage.gotoLoginPage();
+
+        js.executeScript("window.scrollBy(0,250)","");
+
+        String errorLoginMsg = loginPage.getLblLoginErrorMsg().getText();
+
+        String actualMsg = loginPage.login(Constant.failUsernameLogin, Constant.failPasswordLogin).getWelcomeMessage();
     }
 }

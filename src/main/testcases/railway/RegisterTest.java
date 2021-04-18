@@ -1,22 +1,25 @@
 package railway;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import  org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import common.Utilities;
 import constant.Constant;
 import org.testng.annotations.Test;
+
 public class RegisterTest {
     JavascriptExecutor js;
+
     @BeforeMethod
-    public void beforeMethod(){
+    public void beforeMethod() {
 
         System.out.println("Pre-condition");
-        System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath()+ "\\src\\main\\executables\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath() + "\\src\\main\\executables\\chromedriver.exe");
         Constant.WEBDRIVER = new ChromeDriver();
         Constant.WEBDRIVER.manage().window().maximize();
         js = (JavascriptExecutor) Constant.WEBDRIVER;

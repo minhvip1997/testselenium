@@ -4,7 +4,7 @@ import constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class RegisterPage extends GeneralPage{
+public class RegisterPage extends GeneralPage {
 
     //Locator
     private final By txtEmail = By.xpath("//input[@id='email']");
@@ -60,7 +60,7 @@ public class RegisterPage extends GeneralPage{
         return Constant.WEBDRIVER.findElement(btnRegister);
     }
 
-    public HomePage register(String email, String password, String confirmPassword, String Pid){
+    public HomePage register(String email, String password, String confirmPassword, String Pid) {
         this.getTxtEmail().sendKeys(email);
         this.getTxtPassword().sendKeys(password);
         this.getTxtConfirmPassword().sendKeys(confirmPassword);
@@ -68,4 +68,6 @@ public class RegisterPage extends GeneralPage{
         this.getBtnRegister().click();
         return new HomePage();
     }
+
+
 }

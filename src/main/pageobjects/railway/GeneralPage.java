@@ -24,7 +24,9 @@ public class GeneralPage {
         return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
     }
 
-    protected WebElement getTabRegister() {return Constant.WEBDRIVER.findElement(tabRegister);}
+    protected WebElement getTabRegister() {
+        return Constant.WEBDRIVER.findElement(tabRegister);
+    }
 
     //Method
     public String getWelcomeMessage() {

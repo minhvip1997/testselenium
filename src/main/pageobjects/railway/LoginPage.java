@@ -4,7 +4,7 @@ import constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage extends GeneralPage{
+public class LoginPage extends GeneralPage {
     //Locator
     private final By _txtUsername = By.xpath("//input[@id='username']");
     private final By _txtPassword = By.xpath("//input[@id='password']");
@@ -30,10 +30,15 @@ public class LoginPage extends GeneralPage{
         return Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
     }
 
-    public HomePage login(String username, String password){
+    public HomePage login(String username, String password) {
         this.getTxtUsername().sendKeys(username);
         this.getTxtPassword().sendKeys(password);
         this.getBtnLogin().click();
+        this.getLblLoginErrorMsg();
         return new HomePage();
+    }
+
+    public String getErrorRegisterMessage(){
+        return this.getLblLoginErrorMsg().getText();
     }
 }
